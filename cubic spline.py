@@ -10,9 +10,6 @@ def calculate_fault(xo, yo, yr, start, end, size):
     arrSize = len(yo)
     step = int(arrSize / size)
     fault = sum(abs(yo[step: arrSize - step + 1: step] - yr[step:arrSize - step + 1:step]))
-    ys = cs(xs)
-    yf = funct(xs)
-    fault = calculate_fault(xs, yf, ys, start, end, size)
     return fault
 
 if __name__ == '__main__':
@@ -33,13 +30,13 @@ if __name__ == '__main__':
 
     ys = cs(xs)
     yf = funct(xs)
-    # fault = calculate_fault(xs, yf, ys, start, end, size)
+    fault = calculate_fault(xs, yf, ys, start, end, size)
     
     for i in range(size - 1):
         coeff = [x[i] for x in cs.c]
         print(str(i + 1) + '. ' + str(coeff))
 
-    # plt.text(end-3, -1, "fault {}".format(round(fault, 4)), fontsize=14)
+    plt.text(end-3, -1, "fault {}".format(round(fault, 4)), fontsize=14)
     plt.legend()
     plt.title('Cubic-spline interpolation')
     plt.show()
